@@ -1,0 +1,55 @@
+@keyframes spin2 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin2 10s linear infinite;
+}
+
+@keyframes bounce2 {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.animate-bounce-slow {
+  animation: bounce2 2s infinite;
+}
+
+.animate-bounce-slow2 {
+  animation: bounce2 1.8s infinite;
+}
+
+.animate-bounce-slow3 {
+  animation: bounce2 2.2s infinite;
+}
+
+.animate-bounce-slow4 {
+  animation: bounce2 2.1s infinite;
+}
+
+.gold-gradient {
+  background: rgb(255, 215, 50);
+  background: linear-gradient(
+    124deg,
+    rgba(255, 215, 50, 1) 34%,
+    rgba(255, 249, 190, 1) 49%,
+    rgba(255, 237, 58, 1) 63%
+  );
+}
+
+/* @keyframes pulse2 {
+  50% {
+    background-color: rgb(37 99 235);
+  }
+}
+.animate-pulse-better {
+  animation: pulse2 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+} */

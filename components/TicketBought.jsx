@@ -7,8 +7,8 @@ const TicketBought = () => {
   const handleCheckWinner = async () => {
     getWinner()
       .then((result) => {
-        setWinner(result.winner);
-        setRandom(result.rand);
+        setWinner(result[0]);
+        setRandom(result[1]);
       })
       .catch((error) => {
         console.error(error);

@@ -4,7 +4,7 @@ import { FaSpinner } from "react-icons/fa";
 
 import { buyTicket } from "../lib/functionsFromContract";
 
-const AMOUNT_TICKET = "1";
+const AMOUNT_TICKET = "0.01";
 
 const BuyTicket = ({ setTicketBought }) => {
   const [isLoading, setIsLoading] = useState(false);

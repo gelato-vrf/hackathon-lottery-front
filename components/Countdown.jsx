@@ -9,7 +9,7 @@ const Countdown = () => {
       .then((result) => {
         console.log("_countdown", result);
         if (result) {
-          setCountDown(result);
+          setCountDown(Math.round(result));
         }
       })
       .catch((error) => {

@@ -1,3 +1,13 @@
+@keyframes spinAround {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: spinAround 2s linear infinite;
+}
+
 @keyframes spin2 {
   to {
     transform: rotate(360deg);

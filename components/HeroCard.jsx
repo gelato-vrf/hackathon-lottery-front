@@ -4,7 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const HeroCard = ({ account, setBuy, buy }) => {
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-10">
+    <div className="w-full flex flex-col items-center justify-center gap-10 p-10">
       <h1 className="text-4xl text-black">Get your ticket NOW!</h1>
       <div className="flex flex-col items-center gap-1">
         <div className="flex flex-row gap-2 items-center">

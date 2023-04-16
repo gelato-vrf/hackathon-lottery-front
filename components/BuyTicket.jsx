@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { ImTicket } from "react-icons/im";
+import { FaSpinner } from "react-icons/fa";
+
 import { buyTicket } from "../lib/functionsFromContract";
 
 const AMOUNT_TICKET = "1";
 
-const BuyTicket = () => {
+const BuyTicket = ({ setTicketBought }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [ticketBought, setTicketBought] = useState(false);
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-10 relative">
+    <div className="w-full flex flex-col items-center justify-center gap-10 relative p-10">
       <h1 className="text-4xl text-black">Buy a ticket</h1>
       <div className="flex flex-col items-end gap-2  select-none">
         <div className="flex flex-row items-center justify-center gap-10 rounded-lg bg-black/40  text-white p-2 px-6">
@@ -34,7 +35,9 @@ const BuyTicket = () => {
         Buy
       </button>
       {isLoading ? (
-        <div className="absolute w-full h-full top-0 bg-black/50"></div>
+        <div className="absolute w-full h-full top-0 bg-black/50 flex flex-col items-center justify-center">
+          <FaSpinner className="text-white w-8 h-8 animate-spin" />
+        </div>
       ) : null}
     </div>
   );

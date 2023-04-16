@@ -3,7 +3,7 @@ import { getWinner } from "../lib/functionsFromContract";
 
 const TicketBought = () => {
   const [winner, setWinner] = useState("");
-  const [random, setRandom] = useState(0);
+  const [random, setRandom] = useState("");
   const handleCheckWinner = async () => {
     getWinner()
       .then((result) => {
@@ -25,8 +25,8 @@ const TicketBought = () => {
         {winner}
       </p>
       {winner ? (
-        <p className="">
-          The random number is: <span className="">{random}</span>
+        <p className=" text-center">
+          The random number is: <span className="text-xs">{random}</span>
         </p>
       ) : null}
       <button

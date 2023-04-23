@@ -34,7 +34,7 @@ export default function Home() {
         <div className="w-full h-full grid grid-cols-3">
           <div></div>
           <ClientOnly>
-            <div className="h-full flex flex-col justify-center">
+            <div className="h-full flex flex-col justify-center items-center">
               <Card
                 ticketBought={ticketBought}
                 setTicketBought={setTicketBought}

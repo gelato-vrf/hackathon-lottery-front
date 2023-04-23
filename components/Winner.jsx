@@ -7,12 +7,16 @@ import {
   getRandomNumber,
 } from "../lib/functionsFromContract";
 import Loading from "./Loading";
+import { useAccount } from "wagmi";
 
 const Winner = () => {
   const [winnerAddress, setWinnerAddress] = useState("");
   const [randomNumber, setRandomNumber] = useState("");
   const [pickedWinner, setPickedWinner] = useState(0);
+  const [iWon, setIWon] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { address } = useAccount();
 
   const handleWinner = async () => {
     setIsLoading(true);
@@ -26,6 +30,9 @@ const Winner = () => {
     if (success === 1) {
       setPickedWinner(1);
       const winnerAddress_ = await getPreviousWinner();
+      if (winnerAddress_ === address) {
+        setIWon(true);
+      }
       const randomNumber_ = await getRandomNumber();
       setWinnerAddress(winnerAddress_);
       setRandomNumber(randomNumber_);
@@ -41,7 +48,14 @@ const Winner = () => {
     <div className="w-full flex flex-col items-start justify-start gap-3 relative p-10">
       <div className="flex flex-col w-full items-center">
         {pickedWinner === 1 ? (
-          <h1 className="text-4xl text-black ">🎉Congratulations🎉</h1>
+          iWon ? (
+            <h1 className="text-4xl text-black text-center">
+              <span>Congratulations</span>{" "}
+              <span className="inline-block">🎉You Won!🎉</span>
+            </h1>
+          ) : (
+            <h1 className="text-4xl text-black ">Lottery closed.</h1>
+          )
         ) : pickedWinner === 2 ? (
           <h1 className="text-4xl text-black ">No Participants 😔</h1>
         ) : (

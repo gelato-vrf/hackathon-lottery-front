@@ -26,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     handleStateLottery();
   }, []);
-  console.log("lotteryStarted", lotteryStarted, "ticketBought", ticketBought);
+
   return (
     <div>
       <main className={styles.main}>

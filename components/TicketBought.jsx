@@ -8,7 +8,9 @@ const TicketBought = () => {
         <h1 className="text-4xl text-black ">Ticket Bought!</h1>
         <BsFillCheckCircleFill className="text-green-500 w-9 h-9" />
       </div>
-      <p>You will be able to close the lottery when the countdown ends.</p>
+      <p className="text-center">
+        You will be able to close the lottery when the countdown ends.
+      </p>
     </div>
   );
 };

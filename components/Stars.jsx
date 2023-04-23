@@ -1,11 +1,12 @@
 import React from "react";
+import ticket from "../img/golden-ticket.png";
 
 const Stars = () => {
   return (
     <div className="w-full h-full absolute top-0 left-0 pointer-events-none flex flex-col items-center justify-around">
       <div className="w-full flex flex-row justify-around">
         <img
-          src="https://pancakeswap.finance/images/lottery/three-stars.png"
+          src={ticket}
           alt=""
           className="w-36 h-36 animate-puls animate-bounce-slow"
         />

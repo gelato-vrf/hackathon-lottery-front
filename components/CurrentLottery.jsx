@@ -40,6 +40,7 @@ const CurrentLottery = ({ setWinner }) => {
 
     if (secondsRemaining.current === 0) {
       setWinner(true);
+      fetchData();
     }
 
     if (secondsRemaining.current >= 0) {

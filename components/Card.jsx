@@ -1,20 +1,33 @@
 import React, { useState } from "react";
-import HeroCard from "./HeroCard";
+import StartLottery from "./StartLottery";
 import BuyTicket from "./BuyTicket";
 import TicketBought from "./TicketBought";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+import Winner from "./Winner";
 
-const Card = ({ account, buy, setBuy }) => {
-  const [ticketBought, setTicketBought] = useState(false);
+const Card = ({
+  ticketBought,
+  setTicketBought,
+  lotteryStarted,
+  setLotteryStarted,
+  winner,
+}) => {
+  const { address, isConnected } = useAccount();
   return (
-    <div className="w-[500px] rounded-[1.3rem] gold-gradient z-10 backdrop-blur-xl overflow-hidden">
-      {account.isConnected && buy ? (
-        ticketBought ? (
+    <div className="w-full max-w-[500px] rounded-[1.3rem] gold-gradient z-10 backdrop-blur-xl overflow-hidden">
+      {isConnected && lotteryStarted ? (
+        winner ? (
+          <Winner />
+        ) : ticketBought ? (
           <TicketBought />
         ) : (
           <BuyTicket setTicketBought={setTicketBought} />
         )
       ) : (
-        <HeroCard account={account} buy={buy} setBuy={setBuy} />
+        <StartLottery
+          isConnected={isConnected}
+          setLotteryStarted={setLotteryStarted}
+        />
       )}
     </div>
   );

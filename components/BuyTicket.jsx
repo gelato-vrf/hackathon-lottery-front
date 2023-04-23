@@ -1,44 +1,50 @@
 import React, { useState } from "react";
 import { ImTicket } from "react-icons/im";
-import { FaSpinner } from "react-icons/fa";
-
 import { buyTicket } from "../lib/functionsFromContract";
+import Loading from "./Loading";
 
 const AMOUNT_TICKET = "0.01";
 
 const BuyTicket = ({ setTicketBought }) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleBuyTicket = async () => {
+    setIsLoading(true);
+    try {
+      const result = await buyTicket(AMOUNT_TICKET);
+      if (result === true) {
+        console.log("got it");
+        setTicketBought(true);
+      }
+    } catch {
+      (error) => {
+        console.error(error);
+      };
+    }
+    setIsLoading(false);
+  };
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-10 relative p-10">
-      <h1 className="text-4xl text-black">Buy a ticket</h1>
-      <div className="flex flex-col items-end gap-2  select-none">
-        <div className="flex flex-row items-center justify-center gap-10 rounded-lg bg-black/40  text-white p-2 px-6">
-          <p className="text-lg">Tickets </p>
-          <div className="flex flex-row gap-2 items-center">
-            <p className="bg-black/30 p-1 px-2 rounded-lg">x1</p>
-            <ImTicket className="w-6 h-6" />
-          </div>
-          <p className="text-lg font-semibold">{AMOUNT_TICKET} ETH</p>
+    <div className="w-full flex flex-col items-center justify-around gap-10 relative p-10">
+      <h1 className="text-4xl text-black">Buy a Ticket</h1>
+      <p>
+        Only ONE ticket can be purchased per address, if you buy more the winner
+        is selected randomly through the use of DRAND and Gelato Web3 functions.
+      </p>
+      <div className="rounded-lg bg-black/30 text-white flex flex-row justify-center gap-10 px-8 py-2">
+        <div className="flex flex-row items-center gap-2 justify-center">
+          <p className="text-black text-lg font-medium">1x</p>
+          <ImTicket className="w-6 h-6 text-blue-600" />
         </div>
-        <div className="rounded-lg bg-black/0 font-bold text-lg text-black flex flex-row justify-end gap-2 px-6 p-2">
-          <span className="font-semibold">Total:</span>
-          <span>{AMOUNT_TICKET} ETH</span>
-        </div>
+        <p className="font-semibold text-xl">0.01 ETH</p>
       </div>
       <button
         type="button"
-        onClick={() => {
-          buyTicket(AMOUNT_TICKET, setIsLoading, setTicketBought);
-        }}
+        onClick={handleBuyTicket}
         className="rounded-2xl bg-blue-500 text-white text-lg px-8 py-3 hover:scale-105 duration-100"
       >
         Buy
       </button>
-      {isLoading ? (
-        <div className="absolute w-full h-full top-0 bg-black/50 flex flex-col items-center justify-center">
-          <FaSpinner className="text-white w-8 h-8 animate-spin" />
-        </div>
-      ) : null}
+      {isLoading ? <Loading /> : null}
     </div>
   );
 };

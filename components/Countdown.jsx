@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiTimeFive } from "react-icons/bi";
 import { getCountDown } from "../lib//functionsFromContract";
 
 const Countdown = () => {
   const [countDown, setCountDown] = useState(0);
+
   useEffect(() => {
     getCountDown()
       .then((result) => {
-        console.log("_countdown", result);
         if (result) {
           setCountDown(Math.round(result));
         }

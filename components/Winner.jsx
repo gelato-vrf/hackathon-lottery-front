@@ -64,7 +64,6 @@ const Winner = () => {
       const randomNumber_ = await getRandomNumber();
       setWinnerAddress(winnerAddress_);
       setRandomNumber(randomNumber_);
-      console.log(`The winner is: ${winnerAddress_}!`);
     });
 
     return () => {

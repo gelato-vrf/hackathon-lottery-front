@@ -13,7 +13,6 @@ const BuyTicket = ({ setTicketBought }) => {
     try {
       const result = await buyTicket(AMOUNT_TICKET);
       if (result === true) {
-        console.log("got it");
         setTicketBought(true);
       }
     } catch {

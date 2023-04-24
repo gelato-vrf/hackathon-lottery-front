@@ -14,7 +14,6 @@ const Card = ({
 }) => {
   const { address, isConnected } = useAccount();
 
-  console.log("Address", address);
   return (
     <div className="w-full max-w-[500px] rounded-[1.3rem] gold-gradient z-10 backdrop-blur-xl overflow-hidden">
       {isConnected && lotteryStarted ? (

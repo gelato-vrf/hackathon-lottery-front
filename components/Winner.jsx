@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+const { ethers } = require("ethers");
+import { contractAddress, contractABI } from "../lib/constants";
 import {
   endLotteryIfNoOneJoins,
   pickWinner,
@@ -17,6 +19,14 @@ const Winner = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { address } = useAccount();
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contractForEvent = new ethers.Contract(
+    contractAddress,
+    contractABI,
+    signer
+  );
 
   const handleWinner = async () => {
     setIsLoading(true);
@@ -43,6 +53,24 @@ const Winner = () => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    contractForEvent.on("LotteryEnded", async () => {
+      setPickedWinner(1);
+      const winnerAddress_ = await getPreviousWinner();
+      if (winnerAddress_ === address) {
+        setIWon(true);
+      }
+      const randomNumber_ = await getRandomNumber();
+      setWinnerAddress(winnerAddress_);
+      setRandomNumber(randomNumber_);
+      console.log(`The winner is: ${winnerAddress_}!`);
+    });
+
+    return () => {
+      contractForEvent.removeAllListeners("LotteryEnded");
+    };
+  }, [contractForEvent]);
 
   return (
     <div className="w-full flex flex-col items-start justify-start gap-3 relative p-10">
